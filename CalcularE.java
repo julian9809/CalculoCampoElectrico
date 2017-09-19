@@ -25,7 +25,9 @@ public class CalcularE {
         int[] posY = new int[n];
         int[] posZ = new int[n];
         double[] carga = new double[n];
+        double[] p = new double[n];
         System.out.println(" ");
+        // para ingresar todos los puntos
         for(int i = 0; i < n; i++){
             System.out.println("punto #" + (i+1));
             System.out.print("x: ");
@@ -49,6 +51,28 @@ public class CalcularE {
             }    
             carga[i] = carga[i]*exp;
         }
+        //para ingresar los datos del punto p
+        System.out.println("punto p");
+        System.out.print("x: ");
+        int x = lec.nextInt();
+        p[0] = x;
+        System.out.print("y: ");
+        int y = lec.nextInt();
+        p[1] = y;
+        System.out.print("z: ");
+        int z = lec.nextInt();
+        p[2] = z;
+        System.out.print("carga: ");
+        int car = lec.nextInt();
+        p[4] = car;
+        System.out.print("10 a la : ");
+        double exp = lec.nextInt();
+        if(exp >= 0){ //este if es para poder manejar el exponente negativo
+            exp = (int) Math.pow(10,exp);
+        }else{
+            exp = 1.0000000/((int) Math.pow(10,(exp*(-1)))); //utilizo el 1.000000 para que las cargas se guarden con esos decimales
+        }    
+        p[4] = p[4]*exp;
     }
     
 }
