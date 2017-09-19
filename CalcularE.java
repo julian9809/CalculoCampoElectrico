@@ -54,17 +54,13 @@ public class CalcularE {
         //para ingresar los datos del punto p
         System.out.println("punto p");
         System.out.print("x: ");
-        int x = lec.nextInt();
-        p[0] = x;
+        int xp = lec.nextInt();
         System.out.print("y: ");
-        int y = lec.nextInt();
-        p[1] = y;
+        int yp = lec.nextInt();
         System.out.print("z: ");
-        int z = lec.nextInt();
-        p[2] = z;
+        int zp = lec.nextInt();
         System.out.print("carga: ");
-        int car = lec.nextInt();
-        p[4] = car;
+        double carp = lec.nextInt();
         System.out.print("10 a la : ");
         double exp = lec.nextInt();
         if(exp >= 0){ //este if es para poder manejar el exponente negativo
@@ -72,7 +68,8 @@ public class CalcularE {
         }else{
             exp = 1.0000000/((int) Math.pow(10,(exp*(-1)))); //utilizo el 1.000000 para que las cargas se guarden con esos decimales
         }    
-        p[4] = p[4]*exp;
+        carp = carp*exp;
+        //se calcula el campo 
     }
     
 }
