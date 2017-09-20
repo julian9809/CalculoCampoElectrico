@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculare;
+package prueba;
 
 import java.util.Scanner;
 
@@ -11,12 +11,12 @@ import java.util.Scanner;
  *
  * @author Julian
  */
-public class CalcularE {
+public class Prueba {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         // TODO code application logic here
         Scanner lec = new Scanner(System.in);
         System.out.print("numero de puntos: ");
@@ -26,6 +26,7 @@ public class CalcularE {
         int[] posZ = new int[n];
         double[] carga = new double[n];
         double[] p = new double[n];
+        double[] resultado = new double[3];
         System.out.println(" ");
         // para ingresar todos los puntos
         for(int i = 0; i < n; i++){
@@ -47,7 +48,7 @@ public class CalcularE {
             if(exp >= 0){ //este if es para poder manejar el exponente negativo
                 exp = (int) Math.pow(10,exp);
             }else{
-                exp = 1.0000000/((int) Math.pow(10,(exp*(-1)))); //utilizo el 1.000000 para que las cargas se guarden con esos decimales
+                exp = 1.0000/((int) Math.pow(10,(exp*(-1)))); //utilizo el 1.000000 para que las cargas se guarden con esos decimales
             }    
             carga[i] = carga[i]*exp;
         }
@@ -59,17 +60,20 @@ public class CalcularE {
         int yp = lec.nextInt();
         System.out.print("z: ");
         int zp = lec.nextInt();
-        System.out.print("carga: ");
-        double carp = lec.nextInt();
-        System.out.print("10 a la : ");
-        double exp = lec.nextInt();
-        if(exp >= 0){ //este if es para poder manejar el exponente negativo
-            exp = (int) Math.pow(10,exp);
-        }else{
-            exp = 1.0000000/((int) Math.pow(10,(exp*(-1)))); //utilizo el 1.000000 para que las cargas se guarden con esos decimales
-        }    
-        carp = carp*exp;
         //se calcula el campo 
+        for(int j = 0; j < n; j++){
+            double distancia = Math.sqrt(Math.pow((xp-posX[j]),2)+Math.pow((yp-posY[j]),2)+Math.pow((zp-posZ[j]),2));
+            double campo = ((9*(Math.pow(10,9))*(carga[j])))/(Math.pow(distancia,2));
+            double vx = (xp-posX[j])/distancia;
+            double vy = (yp-posY[j])/distancia;
+            double vz = (zp-posZ[j])/distancia;
+            resultado[0] = resultado[0] + (campo*vx);
+            resultado[1] = resultado[1] + (campo*vy);
+            resultado[2] = resultado[2] + (campo*vz);
+        }
+        System.out.println(" ");
+        System.out.println("El campo resultante es ");
+        System.out.println(resultado[0] + " i + " + resultado[1] + " j + " + resultado[2] + " k");
     }
     
 }
