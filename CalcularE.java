@@ -12,11 +12,8 @@ import java.util.Scanner;
  * @author Julian
  */
 public class CalcularE {
-
-    /**
-     * @param args the command line arguments
-     */
-        public static void main(String[] args) {
+    
+    public static void main(String[] args) {
         // TODO code application logic here
         Scanner lec = new Scanner(System.in);
         System.out.print("numero de puntos: ");
@@ -63,7 +60,7 @@ public class CalcularE {
         //se calcula el campo 
         for(int j = 0; j < n; j++){
             double distancia = Math.sqrt(Math.pow((xp-posX[j]),2)+Math.pow((yp-posY[j]),2)+Math.pow((zp-posZ[j]),2));
-            double campo = ((9*(Math.pow(10,9))*(carga[j])))/(Math.pow(distancia,2));
+            double campo = ((9*(Math.pow(10,9))*(carga[j])))/(Math.pow((distancia*(Math.pow(10,2))),2));
             double vx = (xp-posX[j])/distancia;
             double vy = (yp-posY[j])/distancia;
             double vz = (zp-posZ[j])/distancia;
@@ -71,9 +68,12 @@ public class CalcularE {
             resultado[1] = resultado[1] + (campo*vy);
             resultado[2] = resultado[2] + (campo*vz);
         }
+        resultado[0] = resultado[0]*100;
+        resultado[1] = resultado[1]*100;
+        resultado[2] = resultado[2]*100;
         System.out.println(" ");
         System.out.println("El campo resultante es ");
-        System.out.println(resultado[0] + " i + " + resultado[1] + " j + " + resultado[2] + " k");
+        System.out.println(resultado[0] + "*10^6" + " i + " + resultado[1] + "*10^6" + " j + " + resultado[2] + "*10^6" + " k");
     }
     
 }
